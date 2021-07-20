@@ -1,4 +1,6 @@
 FROM alpine:3.11
+CMD ["/bin/sh"]
+# ENV PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 # ENV PYTHON_VERSION=3.7.4
 # cd /usr/local/bin  && ln -s idle3 idle  && ln -s pydoc3 pydoc  && ln -s python3 python  && ln -s python3-config python-config
