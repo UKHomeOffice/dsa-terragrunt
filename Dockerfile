@@ -1,5 +1,5 @@
 FROM alpine:3.11
-# CMD ["/bin/sh"]
+CMD ["/bin/sh"]
 # ENV PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 # ENV PYTHON_VERSION=3.7.4
