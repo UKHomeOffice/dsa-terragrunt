@@ -9,7 +9,7 @@ CMD ["/bin/sh"]
 # ENV PYTHON_GET_PIP_SHA256=8d412752ae26b46a39a201ec618ef9ef7656c5b2d8529cdcbe60cd70dc94f40c
 # set -ex;   wget -O get-pip.py "$PYTHON_GET_PIP_URL";  echo "$PYTHON_GET_PIP_SHA256 *get-pip.py" | sha256sum -c -;   python get-pip.py   --disable-pip-version-check   --no-cache-dir   "pip==$PYTHON_PIP_VERSION"  ;  pip --version;   find /usr/local -depth   \(    \( -type d -a \( -name test -o -name tests \) \)    -o    \( -type f -a \( -name '*.pyc' -o -name '*.pyo' \) \)   \) -exec rm -rf '{}' +;  rm -f get-pip.py
 
-ENV TERRAFORM_VER=0.13.1
+ENV TERRAFORM_VER=0.13.7
 ENV TERRAGRUNT_VER=v0.25.1
 RUN apk update     && apk add curl openssh git wget    && apk upgrade --update-cache --available
 RUN curl -Ls -o terraform_${TERRAFORM_VER}_linux_amd64.zip https://releases.hashicorp.com/terraform/${TERRAFORM_VER}/terraform_${TERRAFORM_VER}_linux_amd64.zip && unzip -d /usr/local/bin/ terraform_${TERRAFORM_VER}_linux_amd64.zip
