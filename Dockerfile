@@ -3,7 +3,7 @@ FROM alpine:3.11
 CMD ["/bin/sh"]
 
 ENV TERRAFORM_VER=0.13.7
-ENV TERRAGRUNT_VER=0.31.1
+ENV TERRAGRUNT_VER=v0.31.1
 ENV TERRAGRUNT_TFPATH=/usr/local/bin
 
 RUN apk update     && apk add curl openssh git wget    && apk upgrade --update-cache --available
