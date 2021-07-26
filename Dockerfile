@@ -4,6 +4,7 @@ CMD ["/bin/sh"]
 
 ENV TERRAFORM_VER=0.13.7
 ENV TERRAGRUNT_VER=0.25.5
+ENV TERRAGRUNT_TFPATH=/usr/local/bin
 
 RUN apk update     && apk add curl openssh git wget    && apk upgrade --update-cache --available
 RUN curl -Ls -o terraform_${TERRAFORM_VER}_linux_amd64.zip https://releases.hashicorp.com/terraform/${TERRAFORM_VER}/terraform_${TERRAFORM_VER}_linux_amd64.zip && unzip -d /usr/local/bin/ terraform_${TERRAFORM_VER}_linux_amd64.zip
