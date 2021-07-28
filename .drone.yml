@@ -17,6 +17,7 @@ steps:
     event:
     - pull_request
     - push
+    - tag
 
 - name: docker-push
   pull: if-not-exists
