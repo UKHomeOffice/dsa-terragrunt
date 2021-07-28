@@ -13,8 +13,6 @@ steps:
   image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
   commands:
   - docker build -t quay.io/ukhomeofficedigital/dsa-terragrunt:$${DRONE_COMMIT_SHA} .
-  environment:
-    # DOCKER_HOST: tcp://172.17.0.1:2375
   when:
     event:
     - pull_request
@@ -25,19 +23,35 @@ steps:
   image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
   commands:
   - docker login -u="ukhomeofficedigital+dsa_shared_service" -p=$${DOCKER_TOKEN} quay.io
-  - docker tag quay.io/ukhomeofficedigital/dsa-terragrunt:$${DRONE_COMMIT_SHA} quay.io/ukhomeofficedigital/dsa-terragrunt:v${TERRAFORM_VER}
+  - docker tag quay.io/ukhomeofficedigital/dsa-terragrunt:$${DRONE_COMMIT_SHA} quay.io/ukhomeofficedigital/dsa-terragrunt:latest
   - docker push quay.io/ukhomeofficedigital/dsa-terragrunt:$${DRONE_COMMIT_SHA}
-  - docker push quay.io/ukhomeofficedigital/dsa-terragrunt:v${TERRAFORM_VER}
+  - docker push quay.io/ukhomeofficedigital/dsa-terragrunt:latest
   environment:
-    # DOCKER_HOST: tcp://172.17.0.1:2375
     DOCKER_TOKEN:
       from_secret: DOCKER_TOKEN
   when:
     branch:
     - main
-    - version/*
     event:
     - push
+
+- name: docker-push-tag
+  pull: if-not-exists
+  image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
+  commands:
+    - echo tag
+    - echo $${DOCKER_TOKEN}
+  # - docker login -u="ukhomeofficedigital+dsa_shared_service" -p=$${DOCKER_TOKEN} quay.io
+  # - docker tag quay.io/ukhomeofficedigital/dsa-terragrunt:$${DRONE_COMMIT_SHA} quay.io/ukhomeofficedigital/dsa-terragrunt:latest
+  # - docker push quay.io/ukhomeofficedigital/dsa-terragrunt:$${DRONE_COMMIT_SHA}
+  # - docker push quay.io/ukhomeofficedigital/dsa-terragrunt:latest
+  environment:
+    DOCKER_TOKEN:
+      from_secret: DOCKER_TOKEN
+  when:
+    event:
+    - tag
+
 
 services:
 - name: docker
