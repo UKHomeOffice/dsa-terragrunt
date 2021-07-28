@@ -40,15 +40,10 @@ steps:
   pull: if-not-exists
   image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
   commands:
-    - echo tag
-    - echo $${DOCKER_COMMIT_SHA}
-    - echo $${DRONE_TAG}
-    - echo tag
-    - echo ${DRONE_TAG}
-  # - docker login -u="ukhomeofficedigital+dsa_shared_service" -p=$${DOCKER_TOKEN} quay.io
-  # - docker tag quay.io/ukhomeofficedigital/dsa-terragrunt:$${DRONE_COMMIT_SHA} quay.io/ukhomeofficedigital/dsa-terragrunt:latest
-  # - docker push quay.io/ukhomeofficedigital/dsa-terragrunt:$${DRONE_COMMIT_SHA}
-  # - docker push quay.io/ukhomeofficedigital/dsa-terragrunt:latest
+  - docker login -u="ukhomeofficedigital+dsa_shared_service" -p=$${DOCKER_TOKEN} quay.io
+  - docker tag quay.io/ukhomeofficedigital/dsa-terragrunt:$${DRONE_COMMIT_SHA} quay.io/ukhomeofficedigital/dsa-terragrunt:${DRONE_TAG}
+  - docker push quay.io/ukhomeofficedigital/dsa-terragrunt:$${DRONE_COMMIT_SHA}
+  - docker push quay.io/ukhomeofficedigital/dsa-terragrunt:${DRONE_TAG}
   environment:
     DOCKER_TOKEN:
       from_secret: DOCKER_TOKEN
