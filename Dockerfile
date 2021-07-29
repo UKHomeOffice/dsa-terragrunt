@@ -2,6 +2,7 @@ FROM alpine:3.11
 
 CMD ["/bin/sh"]
 
+
 ENV TERRAFORM_VER=0.15.5
 ENV TERRAGRUNT_VER=v0.31.1
 
