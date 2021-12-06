@@ -2,8 +2,8 @@ FROM alpine:3.11
 
 CMD ["/bin/sh"]
 
-ENV TERRAFORM_VER=1.0.10
-ENV TERRAGRUNT_VER=v0.31.1
+ENV TERRAFORM_VER=1.0.11
+ENV TERRAGRUNT_VER=v0.35.13
 
 RUN apk update     && apk add curl openssh git wget    && apk upgrade --update-cache --available
 RUN curl -Ls -o terraform_${TERRAFORM_VER}_linux_amd64.zip https://releases.hashicorp.com/terraform/${TERRAFORM_VER}/terraform_${TERRAFORM_VER}_linux_amd64.zip && unzip -d /usr/local/bin/ terraform_${TERRAFORM_VER}_linux_amd64.zip
