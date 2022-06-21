@@ -1,6 +1,8 @@
 # dsa-terragrunt
 Terragrunt image for DSA.
 
+Latest Version: 1.2.3
+
 ## Using Git Tags
 
 To push a specific version to the Quay repository, create an annotated git tag and push with
